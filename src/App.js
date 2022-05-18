@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      count: 0,
+      name:"",
+    }
+  }
+   Increase(){
+    this.setState({
+      count: this.state.count + 1
+    })
+  }
+  Decrease(){
+    this.setState({
+      count: this.state.count - 1
+    })
+  }
+  NameChangeHandle(value){
+    this.setState({
+      name:value,
+    })
+  }
+  
+  
+  render() {
+    
+    return (
+      <div>
+        <h1>{this.state.count}</h1>
+        <h1>Hello i will type whatever you type {this.state.name}</h1>
+        <button onClick={()=>{this.Increase()}}>Increase Me</button>
+        <button onClick={()=>{this.Decrease()}}>Decrease Me</button>
+        <input type="text" onChange={(e)=>this.NameChangeHandle(e.target.value)} value={this.state.name}/>
+      </div>
+    )
+  }
 }
 
-export default App;
+export default App
